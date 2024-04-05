@@ -1,0 +1,16 @@
+include includes/head
+body
+    include includes/nav
+    +nav(current,loggedIn)
+    main.dashboard
+        .sell-btn-wrapper
+            a.sell-btn(href="/sell") Sell
+        .books
+            each book in books
+                include includes/ownBookItem
+                +ownBookItem(book)
+    include includes/pagination
+    +pagination(parseInt(totalPages),parseInt(currentPage))
+    
+script(src="/js/dashboard.js")
+    

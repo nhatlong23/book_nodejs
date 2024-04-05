@@ -1,0 +1,26 @@
+include includes/head
+body
+    include includes/nav
+    +nav(current,loggedIn,search)
+    include includes/category
+    +category(category)
+    
+    img.banner(src="/img/banner.png", alt="banner")
+
+    section.shop
+        .shop-header
+            img.shop-icon(src="/img/shop.svg")
+            h3.shop-text= `${search?"Search result for"+search:"Shop"}` 
+        if books && books.length
+            .books
+                each book in books
+                    include includes/bookItem
+                    +book-item(book)
+        else
+            .empty No Books Found!
+
+    include includes/pagination
+    +pagination(parseInt(totalPages),parseInt(currentPage))
+    
+                
+    script(src="/js/addToCart.js")
